@@ -7,16 +7,15 @@ public abstract class JobField {
    private static int nextId = 1;
    private String value;
 
-   public JobField(String aValue){
-       this.value= aValue;
-       this.id=nextId;
-       nextId++;
+    public JobField() {
+        id = nextId;
+        nextId++;
+    }
 
-   }
-   public JobField(){
-       this.id=nextId;
-       nextId++;
-   }
+    public JobField(String value) {
+        this();
+        this.value = value;
+    }
 
     public int getId() {
         return id;

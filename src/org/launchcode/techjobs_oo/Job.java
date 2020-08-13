@@ -117,10 +117,10 @@ public class Job {
         }
         return "\n" + "ID: " + id + "\n" +
                 "Name: " + name + '\n'+
-                "Employer: " + employer + "\n"+
-                "Location: " + location + "\n"+
+                "Employer: " + employer.getValue() + "\n"+
+                "Location: " + location.getValue() + "\n"+
                 "Position Type: " + positionType.getValue() + "\n"+
-                "Core Competency: " + coreCompetency +
+                "Core Competency: " + coreCompetency.getValue() +
                 "\n";
     }
 
