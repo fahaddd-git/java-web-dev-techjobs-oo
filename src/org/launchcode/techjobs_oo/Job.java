@@ -14,21 +14,21 @@ public class Job {
     private CoreCompetency coreCompetency;
 
 
-
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
-    public Job(){
+    public Job() {
         this.id = nextId;
         nextId++;
     }
-    public Job(String aName, Employer aEmployer, Location aLocation, PositionType aPositionType, CoreCompetency aCoreCompetency){
+
+    public Job(String aName, Employer aEmployer, Location aLocation, PositionType aPositionType, CoreCompetency aCoreCompetency) {
         this();
         this.name = aName;
         this.employer = aEmployer;
         this.location = aLocation;
-        this.positionType= aPositionType;
-        this.coreCompetency= aCoreCompetency;
+        this.positionType = aPositionType;
+        this.coreCompetency = aCoreCompetency;
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
@@ -93,4 +93,35 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
+
+
+    @Override
+    public String toString() {
+
+
+
+        if(name==""|| name==null){
+            name = "Data not available";
+        }
+        if(employer.getValue()==""||employer.getValue()==null){
+            employer.setValue("Data not available");
+        }
+        if(location.getValue()==""||employer.getValue()==null){
+            location.setValue("Data not available");
+        }
+        if (positionType.getValue()==""||positionType.getValue()==null){
+            positionType.setValue("Data not available");
+        }
+        if(coreCompetency.getValue()==""||coreCompetency.getValue()==null){
+            positionType.setValue("Data not available");
+        }
+        return "\n" + "ID: " + id + "\n" +
+                "Name: " + name + '\n'+
+                "Employer: " + employer + "\n"+
+                "Location: " + location + "\n"+
+                "Position Type: " + positionType.getValue() + "\n"+
+                "Core Competency: " + coreCompetency +
+                "\n";
+    }
+
 }

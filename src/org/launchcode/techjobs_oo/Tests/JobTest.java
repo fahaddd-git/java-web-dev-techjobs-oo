@@ -10,11 +10,21 @@ public class JobTest {
 
     Job testJob1;
     Job testJob2;
+    Job controlJob;
+    Job testJob;
+    Job testJobEmptyEmployerField;
+
 
     @Before
     public void createJobObjects(){
         testJob1 = new Job();
         testJob2 = new Job();
+        controlJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testJobEmptyEmployerField = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+
+
     }
 
     @Test
@@ -42,9 +52,22 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality(){
-        Job controlJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        Job testJob =new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertFalse(controlJob.equals(testJob));
+    }
+
+    @Test
+    public void testToStringFor(){
+    String jobString = testJob.toString();
+    String jobOutput = String.format("\nID: %d\nName: %s\nEmployer: %s\nLocation: %s\nPosition Type: %s\nCore Competency: %s\n", testJob.getId(), testJob.getName(), testJob.getEmployer().getValue(), testJob.getLocation().getValue(), testJob.getPositionType().getValue(), testJob.getCoreCompetency().getValue());
+    String jobOutputEmptyField = String.format("\nID: %d\nName: %s\nEmployer: Data not available\nLocation: %s\nPosition Type: %s\nCore Competency: %s\n", testJobEmptyEmployerField.getId(), testJobEmptyEmployerField.getName(), testJobEmptyEmployerField.getLocation().getValue(), testJobEmptyEmployerField.getPositionType().getValue(), testJobEmptyEmployerField.getCoreCompetency().getValue());
+
+    assertEquals(0,jobString.indexOf("\n"),.001);
+    assertEquals(jobString.length()-1,jobString.lastIndexOf("\n"),.001);
+    assertEquals(1, jobString.indexOf("ID"), .001);
+    assertEquals(jobString, jobOutput);
+    assertEquals(testJobEmptyEmployerField.toString(), jobOutputEmptyField);
+
+
     }
 
 }
